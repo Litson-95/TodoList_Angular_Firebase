@@ -24,7 +24,7 @@
         </div>
 
         <center>
-          <div class="container" style="background:#fff;width: 85%;margin-top: 5rem;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
+          <div class="container" style="background:#fff;width: 60%;margin-top: 5rem;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
             <div class="container" style="padding: 2rem;">
               <input placeholder="Title Here" id="first_name" type="text"  class="validate">
               <textarea id="textarea1" class="materialize-textarea" placeholder="Description"></textarea>
@@ -33,14 +33,14 @@
           </div>
         </center>
 
-        <div class="container" style="width: 85%;background: #fff;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);margin-top: 2rem;">
+        <div class="container" style="width: 60%;background: #fff;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);margin-top: 2rem;">
         <div class="container" style="padding: 1rem;">
         <input placeholder="Search the list" id="search" type="text"  class="validate" ng-model="searchText">
         </div>
         </div>
 
         <center>
-          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;width: 85%; margin-top: 3rem;margin-bottom: 5rem; box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
+          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;width: 60%; margin-top: 3rem;margin-bottom: 5rem; box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
             <div class="" style="text-align: left;padding: 3rem;">
             <h4>{{list.Title}}</h4>
 
