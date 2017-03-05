@@ -69,6 +69,7 @@
           <!--Import jQuery before materialize.js-->
           <script type="text/javascript">
             function push(){
+              if(document.getElementById("first_name").value.trim() !== '' && document.getElementById("textarea1").value.trim() !== ''){
               var ini = document.getElementById('first_name').value;
               var ini1 = document.getElementById('textarea1').value;
               firebase.database().ref('todo/').push({
@@ -76,6 +77,13 @@
                 Desc:ini1
               });
               Materialize.toast('Data Added to the database', 500);
+            }
+            else
+            {
+              Materialize.toast('Type something Dude ;)', 1000);
+            }
+              
+            
             }
           </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
