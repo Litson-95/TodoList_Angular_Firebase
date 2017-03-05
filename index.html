@@ -75,7 +75,9 @@
               var ini1 = document.getElementById('textarea1').value;
               firebase.database().ref('todo/').push({
                 Title:ini,
-                Desc:ini1
+                Desc:ini1,
+                'createdDate': Date.now() + 0,
+                'sortDate': 0 - Date.now()
               });
               Materialize.toast('Data Added to the database', 500);
             }
