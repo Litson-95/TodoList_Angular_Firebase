@@ -2,6 +2,7 @@
   <html>
     <head>
       <title>TodoList !</title>
+      <link rel="shortcut icon" type="image/png" href="logo_todolist.png"/>
       <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -19,56 +20,78 @@
     <style type="text/css">
     .close{
       cursor: pointer;
-      color: #e0e0e0;
+      color: #e0e0e0 !important;
     }
     .close:hover{
       cursor: pointer;
-      color: #616161;
+      color: #616161 !important;
     }
     .close:focus{
       cursor: pointer;
-      color: #e0e0e0;
+      color: #e0e0e0 !important;
     }
+    .input-field input[type=text]:focus {
+     border-bottom: 1px solid #fff !important;
+     box-shadow: 0 1px 0 0 #000;
+   }
     </style>
 
-    <body style="background: #009688;" ng-app="myApp" ng-controller="myCtrl">
+    <body style="background: #e8e8e8;" ng-app="myApp" ng-controller="myCtrl">
 
-        <div class="container">
-        
-          <h1 style="text-align: center;color: #fff;margin-top: 5rem;">To Do List !</h1>
 
+
+      <div class="navbar-fixed">
+      <nav style="background: #01579B">
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input id="search" ng-model="searchText" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
         </div>
-
+      </nav>
+      </div> 
         <center>
-          <div class="container" style="background:#fff;width: 60%;margin-top: 5rem;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
-            <div class="container" style="padding: 2rem;">
+          <div class="container" style="background:#fff;max-width: 480px; margin-top: 5rem;box-shadow: 0 2px 2px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
+            <div class="container" style="padding: 25px;">
               <input placeholder="Title Here" id="first_name" type="text"  class="validate">
               <textarea id="textarea1" class="materialize-textarea" placeholder="Description"></textarea>
-              <a onclick="push()" class="waves-effect waves-light btn" style="text-align: left;">Save</a>
+              <a onclick="push()" class="waves-effect waves-light btn" style="text-align: left;background: #01579B">Post it !</a>
             </div>
           </div>
         </center>
-
-        <div class="container" style="width: 60%;background: #fff;box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);margin-top: 2rem;">
-        <div class="container" style="padding: 1rem;">
-        <input placeholder="Search the list" id="search" type="text"  class="validate" ng-model="searchText">
-        </div>
-        </div>
-
         <center>
-          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;width: 60%; margin-top: 1rem;margin-bottom: 1rem; box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
+          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;max-width: 480px; margin-top: 2rem; box-shadow: 0 2px 2px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
           <a style="float: right;padding: 10px;" ng-click="deletePost(list)"><i class="material-icons close">clear</i></a>
             <div class="" style="text-align: left;padding: 1px;margin-left: 23px;">
             <h4 style="margin-top: 15px;text-align: justify;margin-right: 23px;">{{list.Title}}</h4>
+            <a style="color: #757575;display: inline-flex;margin-bottom: 10px;"><i style="font-size: 17px;" class="material-icons">date_range</i>{{list.createdDate}}</a>
 
             <p style="color: #7a7a7a;text-align: justify;margin-right: 23px;">{{list.Desc}}</p>
         
             </div>
           </div>
+          <div class="fixed-action-btn horizontal click-to-toggle">
+            <a class="btn-floating btn-large red">
+              <i class="material-icons">menu</i>
+            </a>
+
+            <ul>
+              <li><a class="btn-floating red"><i class="material-icons">add</i></a></li>
+              <li><a class="btn-floating blue darken-1"><i class="material-icons">view_module</i></a></li>
+              <li><a class="btn-floating green"><i class="material-icons">view_list</i></a></li>
+            </ul>
+          </div>
+
+        
+
+
         </center>
 
 
-        <h6 style="color: #4DB6AC;text-align: center;margin-bottom: 3rem;">© 2017 | Litson Thomas </h6>
+        <h6 style="color: #424242;opacity: .5;text-align: center;margin-bottom: 3rem;margin-top: 4rem;">© 2017 | Litson Thomas </h6>
 
 
         <script src="https://www.gstatic.com/firebasejs/3.6.10/firebase.js"></script>
@@ -85,14 +108,17 @@
         </script>
           <!--Import jQuery before materialize.js-->
           <script type="text/javascript">
+          
             function push(){
               if(document.getElementById("first_name").value.trim() !== '' && document.getElementById("textarea1").value.trim() !== ''){
               var ini = document.getElementById('first_name').value;
               var ini1 = document.getElementById('textarea1').value;
+              var date1 = new Date();
+
               firebase.database().ref('todo/').push({
                 Title:ini,
                 Desc:ini1,
-                'createdDate': Date.now() + 0,
+                'createdDate': date1.toDateString(),
                 'sortDate': 0 - Date.now()
               });
               Materialize.toast('Data Added to the database', 500);
@@ -104,6 +130,8 @@
               
             document.getElementById("first_name").value = '';
             document.getElementById("textarea1").value = '';
+            var date1 = new Date();
+            console.log(date1.toDateString());
             }
 
           </script>
