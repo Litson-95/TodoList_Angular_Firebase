@@ -16,6 +16,21 @@
     <script src="https://cdn.firebase.com/libs/angularfire/2.2.0/angularfire.min.js"></script>
     </head>
 
+    <style type="text/css">
+    .close{
+      cursor: pointer;
+      color: #e0e0e0;
+    }
+    .close:hover{
+      cursor: pointer;
+      color: #616161;
+    }
+    .close:focus{
+      cursor: pointer;
+      color: #e0e0e0;
+    }
+    </style>
+
     <body style="background: #009688;" ng-app="myApp" ng-controller="myCtrl">
 
         <div class="container">
@@ -41,11 +56,12 @@
         </div>
 
         <center>
-          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;width: 60%; margin-top: 3rem;margin-bottom: 5rem; box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
-            <div class="" style="text-align: left;padding: 3rem;">
-            <h4>{{list.Title}}</h4>
+          <div class="container" ng-repeat="list in posts | filter:searchText"  style="background:#fff;width: 60%; margin-top: 1rem;margin-bottom: 1rem; box-shadow: 0 8px 7px 0 rgba(0,0,0,.19), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)">
+          <a style="float: right;padding: 10px;" ng-click="deletePost(list)"><i class="material-icons close">clear</i></a>
+            <div class="" style="text-align: left;padding: 1px;margin-left: 23px;">
+            <h4 style="margin-top: 15px;text-align: justify;margin-right: 23px;">{{list.Title}}</h4>
 
-            <p style="color: #7a7a7a">{{list.Desc}}</p>
+            <p style="color: #7a7a7a;text-align: justify;margin-right: 23px;">{{list.Desc}}</p>
         
             </div>
           </div>
@@ -86,8 +102,10 @@
               Materialize.toast('Type something Dude ;)', 1000);
             }
               
-            
+            document.getElementById("first_name").value = '';
+            document.getElementById("textarea1").value = '';
             }
+
           </script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
